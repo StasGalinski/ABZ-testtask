@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 function App() {
   const dispatch = useDispatch();
   const tokenExpiration = useSelector(state=>state.expirationTime);
-  
+  console.log(tokenExpiration)
   useEffect(()=>{
     const currentTime = new Date().getTime();
     let timer;

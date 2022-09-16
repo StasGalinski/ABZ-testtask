@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 const GetRequestPart = () => {
     const token = useSelector(state=>state.token);
+    console.log('token')
     const [page,setPage] = useState(1)
     const [isLoading, setIsLoading] = useState(true);
     const [loadedUsers, setLoadedUsers] = useState([])
@@ -27,17 +28,15 @@ const GetRequestPart = () => {
             .then(data=>{
                 setLoadedUsers(prev=>[...prev,...data]);
             })
-        },300)
+        },700)
         return ()=>{
             clearTimeout(timer)
         }
     }, [fetchUsers])
     let content;
-    const wowFunc = ()=>{
-        console.log("WOW")
-    }
+
     if (loadedUsers) {
-        content = loadedUsers.map(el => <User token={token}key={el.id} user={el} />)
+        content = loadedUsers.map(el => <User key={el.id} user={el} />)
     }
     return (
         <div>
@@ -46,6 +45,7 @@ const GetRequestPart = () => {
             
                 {!isLoading && <div className={classes.container}> {content }</div>}
                 {isLoading && <p>LOADING!!!</p>}
+                {token&&<p>Token is active</p>}
                 <button onClick={nextPage}>Show More</button>
 
         </div>
