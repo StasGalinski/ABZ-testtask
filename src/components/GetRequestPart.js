@@ -2,20 +2,32 @@ import { useState, useCallback, useEffect } from "react";
 import User from "./User";
 import classes from './GetRequestPart.module.css'
 const GetRequestPart = () => {
+    const [page,setPage] = useState(1)
     const [isLoading, setIsLoading] = useState(true);
     const [loadedUsers, setLoadedUsers] = useState([])
     const fetchUsers = useCallback(() => {
-        setIsLoading(true)
-        fetch('https://frontend-test-assignment-api.abz.agency/api/v1/users?page=1&count=5')
+        setIsLoading(true);
+        console.log("fetching")
+        return fetch(`https://frontend-test-assignment-api.abz.agency/api/v1/users?page=${page}&count=6`)
             .then(res => res.json())
             .then(data => {
-                console.log(data.users)
-                setLoadedUsers(data.users)
-                setIsLoading(false)
+                setIsLoading(false);
+                return data.users;
             })
-    }, []);
+    }, [page]);
+    const nextPage = ()=>{
+        setPage(prev=> prev+1);
+    }
     useEffect(() => {
-        fetchUsers();
+        const timer = setTimeout(()=>{
+            fetchUsers()
+            .then(data=>{
+                setLoadedUsers(prev=>[...prev,...data]);
+            })
+        },500)
+        return ()=>{
+            clearTimeout(timer)
+        }
     }, [fetchUsers])
     let content;
     if (loadedUsers) {
@@ -27,7 +39,7 @@ const GetRequestPart = () => {
             {isLoading && <p>Loading</p>}
             
                 {!isLoading && <div className={classes.container}> {content }</div>}
-            
+                <button onClick={nextPage}>Show More</button>
 
         </div>
     )
