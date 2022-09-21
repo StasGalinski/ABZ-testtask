@@ -45,13 +45,13 @@ const PostRequestPart = () => {
         <h2>POST REQUEST PART 2</h2>
         <form onSubmit={submitForm}>
             <div>
-                <input type="text" name="name" placeholder="Your Name" ref={nameRef} />
+                <input type="text" name="name" placeholder="Your Name" ref={nameRef}/>
             </div>
             <div>
                 <input type="email" name="email" placeholder="Email" ref={emailRef} />
             </div>
             <div>
-                <input type="number" name="phone" placeholder="Phone" ref={phoneRef} />
+                <input type="number" name="phone" placeholder="Phone" ref={phoneRef} readOnly/>
             </div>
             <Radiogroup setRadio={radioChangeHandler} />
             <div>
