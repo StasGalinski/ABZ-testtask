@@ -1,6 +1,6 @@
 import Radiogroup from "./Radiogroup";
 import { useRef, useState } from "react";
-const PostRequestPart = () => {
+const PostRequestPart = (props) => {
     const [position,setPostion]= useState(undefined);
     const [selectedFile,setSelectedFile]=useState();
     const nameRef = useRef();
@@ -24,6 +24,8 @@ const PostRequestPart = () => {
         formData.append("phone",phoneRef.current.value);
         formData.append("position_id",position);
         console.log(...formData)
+        props.removeToken();
+        
         //Get token
         //fetch data
     }

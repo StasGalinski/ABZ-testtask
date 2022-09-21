@@ -1,14 +1,8 @@
 import { useState } from "react";
-const SignInButton = () => {
+const SignInButton = (props) => {
     const [tokenIsActive, setTokenIsActive] = useState(false)
     const getTokenHandler = ()=>{
-        fetch('https://frontend-test-assignment-api.abz.agency/api/v1/token')
-        .then(res=>res.json())
-        .then(data=>{
-            //Set token to data.token
-            console.log(data.token)
-        })
-        setTokenIsActive(true)
+        props.signInHandler();
     }
     return (
         <div>

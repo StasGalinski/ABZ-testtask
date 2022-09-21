@@ -1,13 +1,13 @@
 import { useState, useCallback, useEffect } from "react";
 import User from "./User";
 import classes from './GetRequestPart.module.css'
-const GetRequestPart = () => {
-    const [page,setPage] = useState(1)
+const GetRequestPart = (props) => {
+    const page = props.page
     const [isLoading, setIsLoading] = useState(true);
     const [loadedUsers, setLoadedUsers] = useState([])
     const fetchUsers = useCallback(() => {
         setIsLoading(true);
-        console.log("fetching")
+        console.log('fetchPage')
         return fetch(`https://frontend-test-assignment-api.abz.agency/api/v1/users?page=${page}&count=6`)
             .then(res => res.json())
             .then(data => {
@@ -16,13 +16,18 @@ const GetRequestPart = () => {
             })
     }, [page]);
     const nextPage = ()=>{
-        setPage(prev=> prev+1);
+        props.changePage();
     }
     useEffect(() => {
         const timer = setTimeout(()=>{
             fetchUsers()
             .then(data=>{
-                setLoadedUsers(prev=>[...prev,...data]);
+                console.log(data)
+                if(page==1){
+                    setLoadedUsers(data)
+                }else {
+                    setLoadedUsers(prev=>[...prev,...data]);
+                }
             })
         },500)
         return ()=>{
