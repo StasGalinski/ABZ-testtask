@@ -8,11 +8,12 @@ const GetRequestPart = (props) => {
     const fetchUsers = useCallback(() => {
         setIsLoading(true);
         console.log('fetchPage')
-        return fetch(`https://frontend-test-assignment-api.abz.agency/api/v1/users?page=${page}&count=6`)
+        return fetch(`https://frontend-test-assignment-api.abz.agency/api/v1/users?offset=${page*6}&count=${page*6}`)
             .then(res => res.json())
             .then(data => {
+                console.log(data)
                 setIsLoading(false);
-                return data.users;
+                setLoadedUsers(data.users)
             })
     }, [page]);
     const nextPage = ()=>{
@@ -20,16 +21,8 @@ const GetRequestPart = (props) => {
     }
     useEffect(() => {
         const timer = setTimeout(()=>{
-            fetchUsers()
-            .then(data=>{
-                console.log(data)
-                if(page==1){
-                    setLoadedUsers(data)
-                }else {
-                    setLoadedUsers(prev=>[...prev,...data]);
-                }
-            })
-        },500)
+            fetchUsers();
+        },300)
         return ()=>{
             clearTimeout(timer)
         }
