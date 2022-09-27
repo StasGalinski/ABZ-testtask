@@ -1,16 +1,16 @@
 import PostRequestPart from './components/PostRequestPart';
 import Wellcome from './components/Wellcome';
 import GetRequestPart from './components/GetRequestPart';
-import { useState ,useEffect} from 'react';
+import { useState ,useEffect, useCallback} from 'react';
 import './App.css';
 import Header from './components/Header';
 function App() {
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState({defaultValue:1})
   const [tokenId, setTokenId] = useState(null);
   const [tokenExpDate, setTokenExpDate] = useState(null);
-
+//{defaultValue:1}
   const changePageHandler = () => {
-    setPage(prev => prev + 1);
+    setPage(prev=> ({defaultValue:prev.defaultValue+1}));
   }
   const setTokenHandler = () => {
     fetch('https://frontend-test-assignment-api.abz.agency/api/v1/token')
@@ -26,14 +26,14 @@ function App() {
         console.log('tokken added');
       })
   }
-  const removeTokenHandler = () => {
+  const removeTokenHandler = useCallback(() => {
     localStorage.removeItem('token');
     localStorage.removeItem('tokenExpirationDate');
     setTokenId(null);
     setTokenExpDate(null);
-    setPage(prev => 1);
+    setPage(prev=>({defaultValue:1}));
     console.log('token removed')
-  }
+  },[])
   useEffect(()=>{
     const currentTime = new Date().getTime();
     let timer;
@@ -47,7 +47,7 @@ function App() {
         clearTimeout(timer);
       }
     }
-  },[tokenExpDate,tokenId])
+  },[tokenExpDate,tokenId,removeTokenHandler])
   useEffect(()=>{
     const timer = setTimeout(()=>{
       if(localStorage.getItem('token')){

@@ -2,31 +2,31 @@ import { useState, useCallback, useEffect } from "react";
 import User from "./User";
 import classes from './GetRequestPart.module.css'
 const GetRequestPart = (props) => {
-    const page = props.page
+    const page = props.page.defaultValue
     const [isLoading, setIsLoading] = useState(true);
     const [loadedUsers, setLoadedUsers] = useState([])
+    console.log('rerender')
     const fetchUsers = useCallback(() => {
         setIsLoading(true);
         console.log('fetchPage')
-        return fetch(`https://frontend-test-assignment-api.abz.agency/api/v1/users?offset=${page*6}&count=${page*6}`)
+        return fetch(`https://frontend-test-assignment-api.abz.agency/api/v1/users?offset=0&count=${page*6}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setIsLoading(false);
                 setLoadedUsers(data.users)
             })
-    }, [page]);
+    },[page]);
     const nextPage = ()=>{
         props.changePage();
     }
     useEffect(() => {
         const timer = setTimeout(()=>{
             fetchUsers();
-        },300)
+        },500)
         return ()=>{
             clearTimeout(timer)
         }
-    }, [fetchUsers])
+    },[fetchUsers])
     let content;
     if (loadedUsers) {
         content = loadedUsers.map(el => <User key={el.id} user={el} />)
