@@ -63,9 +63,9 @@ function App() {
 
   return (
     <div className="App">
-      <Header token={tokenId} signInHandler={setTokenHandler} />
+      <Header token={tokenId} signInHandler={setTokenHandler}/>
       <Wellcome token={tokenId} signInHandler={setTokenHandler} />
-      <GetRequestPart changePage={changePageHandler} page={page} />
+      <GetRequestPart changePage={changePageHandler} page={page}/>
       <PostRequestPart token={tokenId} removeToken={removeTokenHandler} />
     </div>
   );
