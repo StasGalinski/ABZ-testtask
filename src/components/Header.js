@@ -1,12 +1,11 @@
 import SignInButton from "./SignInButton";
-
-const Header = ()=>{
+const Header = (props)=>{
     return <nav>
         <p>TESTTASK</p>
         <ul>
             <li>
                 <button>Users</button>
-                <SignInButton />
+                {!props.token &&<SignInButton signInHandler={props.signInHandler}/>}
             </li>
         </ul>
     </nav>
