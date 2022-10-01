@@ -1,7 +1,5 @@
 import SignInButton from "./SignInButton";
-
 const Header = (props)=>{
-
     return <nav>
         <p>TESTTASK</p>
         <ul>

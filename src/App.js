@@ -1,17 +1,20 @@
+import { useState, useEffect, useCallback } from 'react';
+
 import PostRequestPart from './components/PostRequestPart';
 import Wellcome from './components/Wellcome';
 import GetRequestPart from './components/GetRequestPart';
-import { useState ,useEffect, useCallback} from 'react';
+
 import './App.css';
 import Header from './components/Header';
 function App() {
-  const [page, setPage] = useState({defaultValue:1})
-  const [tokenId, setTokenId] = useState(null);
-  const [tokenExpDate, setTokenExpDate] = useState(null);
-//{defaultValue:1}
+  const [page, setPage] = useState({ pageNumber: 1 });
+  const [tokenId, setTokenId] = useState(localStorage.getItem('token'));
+  const [tokenExpDate, setTokenExpDate] = useState(localStorage.getItem('tokenExpirationDate'));
+
   const changePageHandler = () => {
-    setPage(prev=> ({defaultValue:prev.defaultValue+1}));
+    setPage(prev => ({ pageNumber: prev.pageNumber + 1 }));
   }
+
   const setTokenHandler = () => {
     fetch('https://frontend-test-assignment-api.abz.agency/api/v1/token')
       .then(response => response.json())
@@ -20,10 +23,9 @@ function App() {
           setTokenId(data.token);
           const tokenExpDate = new Date().getTime() + 2400000;
           setTokenExpDate(tokenExpDate);
-          localStorage.setItem('token',data.token);
-          localStorage.setItem('tokenExpirationDate',tokenExpDate)
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('tokenExpirationDate', tokenExpDate);
         }
-        console.log('tokken added');
       })
   }
   const removeTokenHandler = useCallback(() => {
@@ -31,41 +33,28 @@ function App() {
     localStorage.removeItem('tokenExpirationDate');
     setTokenId(null);
     setTokenExpDate(null);
-    setPage(prev=>({defaultValue:1}));
-    console.log('token removed')
-  },[])
-  useEffect(()=>{
+    setPage(prev => ({ pageNumber: 1 }));
+  }, [])
+
+  useEffect(() => {
     const currentTime = new Date().getTime();
     let timer;
-    if(tokenId&&tokenExpDate>currentTime){
-       timer = setTimeout(()=>{
+    if (tokenId && tokenExpDate > currentTime) {
+      timer = setTimeout(() => {
         removeTokenHandler();
-      },tokenExpDate-currentTime);
+      }, tokenExpDate - currentTime);
     }
-    return ()=>{
-      if(timer){
+    return () => {
+      if (timer) {
         clearTimeout(timer);
       }
     }
-  },[tokenExpDate,tokenId,removeTokenHandler])
-  useEffect(()=>{
-    const timer = setTimeout(()=>{
-      if(localStorage.getItem('token')){
-        console.log('token is Set from localstorage')
-        setTokenId(localStorage.getItem('token'))
-        setTokenExpDate(localStorage.getItem('tokenExpirationDate'))
-      }
-    },300)
-    return ()=>{
-      clearTimeout(timer);
-    }
-  },[])
-
+  }, [tokenExpDate, tokenId, removeTokenHandler])
   return (
     <div className="App">
-      <Header token={tokenId} signInHandler={setTokenHandler}/>
+      <Header token={tokenId} signInHandler={setTokenHandler} />
       <Wellcome token={tokenId} signInHandler={setTokenHandler} />
-      <GetRequestPart changePage={changePageHandler} page={page}/>
+      <GetRequestPart changePage={changePageHandler} page={page} />
       <PostRequestPart token={tokenId} removeToken={removeTokenHandler} />
     </div>
   );
