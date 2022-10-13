@@ -4,7 +4,7 @@ const SignInButton = (props) => {
     }
     return (
         <div>
-            <button onClick={getTokenHandler}>Sign In</button >
+            <div onClick={getTokenHandler}>Sign In</div >
         </div>)
 }
 export default SignInButton;

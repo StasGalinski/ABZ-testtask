@@ -41,7 +41,7 @@ const GetRequestPart = (props) => {
         content = loadedUsers.map(el => <User key={el.id} user={el} />)
     }
     return (
-        <div id="#usersList">
+        <div id="usersList">
             <p>GET REQUEST PART</p>
             {isLoading && <p>Loading</p>}
 

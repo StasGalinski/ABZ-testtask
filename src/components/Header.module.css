@@ -1,0 +1,43 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+html {
+    scroll-behavior: smooth;
+  }
+body {
+    margin: 0;
+    padding: 0;
+}
+.mainHeader {
+    width:100%;
+    background-color: yellow;
+    padding: 8px 16px;
+}
+.navMain {
+    color:blue;
+    width: calc(100% - 85px);
+    text-align: right;
+    display: inline-block;
+}
+.navLogo {
+    display: inline-block;
+}
+.navItems {
+    list-style: none;
+    padding: 0px 25px 0 0;
+    margin: 0px;
+
+}
+.navItem {
+    padding: 10px 5px;
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 2px;
+    margin: 0 10px;
+}
+.navItem:hover {
+    border: 1px solid red;
+    color: white;
+    background-color: black;
+}
