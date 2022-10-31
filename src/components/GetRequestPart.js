@@ -41,12 +41,12 @@ const GetRequestPart = (props) => {
         content = loadedUsers.map(el => <User key={el.id} user={el} />)
     }
     return (
-        <div id="usersList">
+        <div id="get__request__part">
             <p>GET REQUEST PART</p>
             {isLoading && <p>Loading</p>}
 
             {!isLoading && <div className={classes.container}> {content}</div>}
-            <button onClick={nextPage}>Show More</button>
+            <button className="button"onClick={nextPage}>Show More</button>
         </div>
     )
 }

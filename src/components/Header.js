@@ -1,20 +1,16 @@
 import SignInButton from "./SignInButton";
 import classes from './Header.module.css'
+import TesttaskLogo from "./Logo.svg"
 const Header = (props) => {
     return (
-        <header className={classes.mainHeader}>
-            <p className={classes.navLogo}>TESTTASK</p>
-            <nav className={classes.navMain}>
-                <ul className={classes.navItems}>
-                    <li className={classes.navItem}>
-                        <a href="#usersList">Users</a>
-                    </li>
-                    <li className={classes.navItem}>
-                        {!props.token && <SignInButton signInHandler={props.signInHandler} />}
-                    </li>
-                </ul>
-            </nav>
-        </header>
+        <nav className={classes.nav__main}>
+            <img className={classes.nav__logo} src={TesttaskLogo} alt="React Logo" />
+            <div className={classes.nav__items}>
+                <a className={`${classes.nav__item} button`} href="#usersList">Users</a>
+                {/* {!props.token && <SignInButton signInHandler={props.signInHandler} />} */}
+                <button className={`${classes.nav__item} button`} type="button" onClick={props.signInHandler}>Sign up</button>
+            </div>
+        </nav>
     )
 }
 export default Header;

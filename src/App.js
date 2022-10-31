@@ -1,11 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 
 import PostRequestPart from './components/PostRequestPart';
-import Wellcome from './components/Wellcome';
-import GetRequestPart from './components/GetRequestPart';
-
-import './App.css';
 import Header from './components/Header';
+import GetRequestPart from './components/GetRequestPart';
+import Banner from './components/Banner'
+import './App.css';
 function App() {
   const [page, setPage] = useState({ pageNumber: 1 });
   const [tokenId, setTokenId] = useState(localStorage.getItem('token'));
@@ -51,11 +50,15 @@ function App() {
     }
   }, [tokenExpDate, tokenId, removeTokenHandler])
   return (
-    <div className="App">
-      <Header token={tokenId} signInHandler={setTokenHandler} />
-      <Wellcome token={tokenId} signInHandler={setTokenHandler} />
-      <GetRequestPart changePage={changePageHandler} page={page} />
-      <PostRequestPart token={tokenId} removeToken={removeTokenHandler} />
+    <div className="app">
+      <header>
+        <Header token={tokenId} signInHandler={setTokenHandler} />
+      </header>
+      <main>
+        <Banner token={tokenId} signInHandler={setTokenHandler} />
+        <GetRequestPart changePage={changePageHandler} page={page} />
+        <PostRequestPart token={tokenId} removeToken={removeTokenHandler} />
+      </main>
     </div>
   );
 }

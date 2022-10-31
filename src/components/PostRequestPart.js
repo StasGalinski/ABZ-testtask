@@ -56,7 +56,7 @@ const PostRequestPart = (props) => {
                     }
                 })
                 .catch(e => {
-                    console.log('Something went wrong : ',e)
+                    console.log('Something went wrong : ', e)
                 })
         } else {
             console.log("something went wrong")
@@ -112,11 +112,13 @@ const PostRequestPart = (props) => {
     if (formIsSent) {
         content = <p>FORM IS SENT</p>
     }
-    return <div>
-        <h2>POST REQUEST PART 2</h2>
-        <div>
-            {content}
+    return (
+        <div id="post__request__part">
+            <h2>POST REQUEST PART 2</h2>
+            <div>
+                {content}
+            </div>
         </div>
-    </div>
+    )
 }
 export default PostRequestPart;
