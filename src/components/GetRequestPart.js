@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect} from "react";
+import { useState, useCallback, useEffect } from "react";
 
 import User from "./User";
 
@@ -41,12 +41,13 @@ const GetRequestPart = (props) => {
         content = loadedUsers.map(el => <User key={el.id} user={el} />)
     }
     return (
-        <div id="get__request__part">
-            <p>GET REQUEST PART</p>
-            {isLoading && <p>Loading</p>}
-
-            {!isLoading && <div className={classes.container}> {content}</div>}
-            <button className="button"onClick={nextPage}>Show More</button>
+        <div id="get__request__part" className={classes['get-request-part']}>
+            <div className={classes['users__list-card']}>
+                <h1>Working with GET request</h1>
+                {isLoading && <p>Loading</p>}
+                {!isLoading && <div className={classes.container}> {content}</div>}
+            </div>
+            <button className={`button ${classes['button-wide']}`}onClick={nextPage}>Show More</button>
         </div>
     )
 }

@@ -47,10 +47,12 @@ main {
   justify-content: center;
   align-items: center;
 }
+.button-wide {
+  width: 120px;
+}
 .button:hover {
   background-color: #FFE302;
 }
-
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;

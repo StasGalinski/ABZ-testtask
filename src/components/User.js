@@ -1,15 +1,26 @@
-import Card from './Card'
+import classes from './User.module.css'
 const User = ({ user }) => {
     return (
-        <Card>
-            <img src={user.photo} alt="oops"></img>
-            <p>{user.name}</p>
-            <div>
-                <p>{user.position}</p>
-                <p>{user.email}</p>
-                <p>{user.phone}</p>
+        <div className={classes.card}>
+            <div className={classes.card__content}>
+                <div
+                    className={classes.image}
+                    style={{ backgroundImage: `url(${user.photo})` }}>
+
+                </div>
+                <p>{user.name}</p>
+                <div className={classes.user__description}>
+                    <p>
+                        {user.position}
+                        <br></br>
+                        {user.email}
+                        <br></br>
+                        {user.phone}
+                    </p>
+
+                </div>
             </div>
-        </Card>
+        </div>
     )
 }
 export default User;

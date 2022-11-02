@@ -1,8 +1,41 @@
+.get-request-part{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 50px;
+    margin: 0 1rem;
+}
+.users__list-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+.users__list-card h1{
+    text-align: center;
+}
 .container {
-    width: 80%;
+    gap: 20px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+@media(min-width:768px){
+    .get-request-part {
+        margin: 0 2rem;
+    }
+    .container {
+        gap: 16px;
+    }
+}
+@media (min-width: 1024px){
+    .get-request-part{
+        margin: 0 3.75rem;
+    }
+    .container {
+        gap: 29px;
+    }
 }

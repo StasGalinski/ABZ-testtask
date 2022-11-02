@@ -77,7 +77,7 @@ a.nav__item {
         right: 3.75rem;
     }
 }
-@media (min-width: 1024px){
+@media (min-width: 1170px){
 
     .nav__logo {
         left: 0;
