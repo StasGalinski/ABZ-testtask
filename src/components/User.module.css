@@ -1,4 +1,4 @@
-.card {
+/* .card {
     flex: 1;
     min-width: 328px;
     min-height: 254px;
@@ -6,7 +6,7 @@
     box-sizing: border-box;
     background-color: #ffff;
     position: relative;
-}
+} */
 .card p {
     width: calc(100%);
     line-height: 26px;

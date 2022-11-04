@@ -38,16 +38,21 @@ const GetRequestPart = (props) => {
     }, [fetchUsers])
     let content;
     if (loadedUsers) {
-        content = loadedUsers.map(el => <User key={el.id} user={el} />)
+        content = loadedUsers.map(el => (
+            <div className={classes.card}>
+                <User key={el.id} user={el} />
+            </div>
+        )
+        )
     }
     return (
-        <div id="get__request__part" className={classes['get-request-part']}>
+        <div id="get__request__part" className={classes.container}>
             <div className={classes['users__list-card']}>
                 <h1>Working with GET request</h1>
                 {isLoading && <p>Loading</p>}
-                {!isLoading && <div className={classes.container}> {content}</div>}
+                {!isLoading && <div className={classes['flexbox__container']}> {content}</div>}
             </div>
-            <button className={`button ${classes['button-wide']}`}onClick={nextPage}>Show More</button>
+            <button className={`button ${classes['button-wide']}`} onClick={nextPage}>Show More</button>
         </div>
     )
 }

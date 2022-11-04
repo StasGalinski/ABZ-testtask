@@ -1,4 +1,5 @@
-.get-request-part{
+
+.container{
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -15,13 +16,22 @@
 .users__list-card h1{
     text-align: center;
 }
-.container {
+.flexbox__container {
     gap: 20px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+.card {
+    flex: 1;
+    min-width: 328px;
+    min-height: 254px;
+    border-radius:10px;
+    box-sizing: border-box;
+    background-color: #ffff;
+    position: relative;
 }
 @media(min-width:768px){
     .get-request-part {
