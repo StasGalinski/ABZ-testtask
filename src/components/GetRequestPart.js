@@ -39,8 +39,8 @@ const GetRequestPart = (props) => {
     let content;
     if (loadedUsers) {
         content = loadedUsers.map(el => (
-            <div className={classes.users__card}>
-                <User key={el.id} user={el} />
+            <div key={el.id} className={classes.users__card}>
+                <User  user={el} />
             </div>
         )
         )
