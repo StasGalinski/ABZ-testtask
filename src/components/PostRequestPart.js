@@ -1,10 +1,10 @@
 import Radiogroup from "./Radiogroup";
 import { useRef, useState } from "react";
+import classes from './PostRequestPart.module.css';
 const emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
 const phoneRegex = /[\+]{0,1}380([0-9]{8})/;
 const nameRegex = /^[A-z0-9 ,.'-]{2,60}$/;
 const fileRegex = /(.jpg|.jpeg)$/;
-
 const PostRequestPart = (props) => {
 
     const nameRef = useRef();
@@ -89,32 +89,54 @@ const PostRequestPart = (props) => {
         setFileIsValid(fileInput.name.match(fileRegex) && fileInput.size <= 5000000)
         setSelectedFile(fileInput)
     }
-    let content = (<form onSubmit={submitForm}>
-        <div>
-            <input type="text" onChange={nameValidator} name="name" placeholder="Your Name" ref={nameRef} />
-            {!nameIsValid && <p>Username is not valid</p>}
-        </div>
-        <div>
-            <input type="email" onChange={emailValidator} name="email" placeholder="Email" ref={emailRef} />
-            {!emailIsValid && <p>Email is not valid</p>}
-        </div>
-        <div>
-            <input type="string" onChange={phoneValidator} name="phone" placeholder="Phone" ref={phoneRef} />
-            {!phoneIsValid && <p>Phone is not valid</p>}
-        </div>
-        <Radiogroup setRadio={radioValidator} />
-        <div>
-            <input type="file" name="image" onChange={fileValidator} placeholder="Upload your photo" />
-            {!fileIsValid && <p>File is not valid</p>}
-        </div>
-        <button> Send</button>
-    </form>)
+    let content = (
+        <form onSubmit={submitForm} className={classes.form}>
+            <div>
+                <input 
+                type="text" 
+                onChange={nameValidator} 
+                name="name" 
+                placeholder="Your Name" 
+                ref={nameRef} 
+                className={classes.form__input}/>
+                {!nameIsValid && <p>Username is not valid</p>}
+            </div>
+            <div className={classes.input__field}>
+                <input 
+                type="email" 
+                onChange={emailValidator} 
+                name="email" 
+                // placeholder="Email" 
+                ref={emailRef} 
+                className={classes.form__input}/>
+                {!emailIsValid && <p>Email is not valid</p>}
+                <label>Email</label>
+            </div>
+            <div>
+                <input 
+                type="string" 
+                onChange={phoneValidator} 
+                name="phone" 
+                placeholder="Phone" 
+                ref={phoneRef} 
+                className={classes.form__input}/>
+                <p>+38 (XXX) XXX - XX - XX</p>
+                {!phoneIsValid && <p>Phone is not valid</p>}
+            </div>
+            <Radiogroup setRadio={radioValidator} />
+            <div>
+                <input type="file" name="image" onChange={fileValidator} placeholder="Upload your photo" />
+                {!fileIsValid && <p>File is not valid</p>}
+            </div>
+            <button> Send</button>
+        </form>
+    )
     if (formIsSent) {
         content = <p>FORM IS SENT</p>
     }
     return (
-        <div id="post__request__part">
-            <h2>POST REQUEST PART 2</h2>
+        <div id="post__request__part" className={classes.container}>
+            <h1>Working with POST request</h1>
             <div>
                 {content}
             </div>

@@ -14,23 +14,38 @@
     height: 70px;
     border-radius: 50%;
 }
-.description {
+.card__text-wrap {
     width: 100%;
 }
-.card__content p {
+.text {
     position: relative;
-    width: calc(100%);
+    width: 100%;
     line-height: 26px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.card__content p[title]:hover::after{
-    content: attr(title);
-    border:3px solid red;
+.tooltip {
+    position: relative;
+}
+.tooltip:hover {
+    cursor: pointer;
+}
+.tooltip__text{
     position: absolute;
-    top: 50%;
-    left: 0;
+    left: 80px;
+    visibility: hidden;
+    color: white;
+    background-color: rgba(0,0,0,0.87);
+    border-radius: 4px;
+    padding: 3px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+.tooltip:hover .tooltip__text{
+    visibility: visible;
 }
 /* .user__description{
     line-height: 26px;
