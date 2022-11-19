@@ -38,17 +38,20 @@
 .input__field input {
     background-color: var(--backround-color);
 }
-.input__field label{
+.input__field .label{
     position: absolute;
     left: 16px;
     top: 14px;
     line-height: 26px;
+    background-color: var(--backround-color);
 }
 
-.form__input:hover {
+
+.form__input:focus + .label,
+.form__input:target + .label,
+.form__input:valid + .label{
     top: -7px;
     z-index: 2;
-    background-color: var(--backround-color);
     font-size: 12px;
     line-height: 14px;
 }

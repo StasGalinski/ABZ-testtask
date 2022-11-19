@@ -92,34 +92,35 @@ const PostRequestPart = (props) => {
     let content = (
         <form onSubmit={submitForm} className={classes.form}>
             <div>
-                <input 
-                type="text" 
-                onChange={nameValidator} 
-                name="name" 
-                placeholder="Your Name" 
-                ref={nameRef} 
-                className={classes.form__input}/>
+                <input
+                    type="text"
+                    onChange={nameValidator}
+                    name="name"
+                    placeholder="Your Name"
+                    ref={nameRef}
+                    className={classes.form__input} />
                 {!nameIsValid && <p>Username is not valid</p>}
             </div>
             <div className={classes.input__field}>
-                <input 
-                type="email" 
-                onChange={emailValidator} 
-                name="email" 
-                // placeholder="Email" 
-                ref={emailRef} 
-                className={classes.form__input}/>
+                <input
+                    required
+                    type="email"
+                    onChange={emailValidator}
+                    name="email"
+                    // placeholder="Email" 
+                    ref={emailRef}
+                    className={classes.form__input} />
                 {!emailIsValid && <p>Email is not valid</p>}
-                <label>Email</label>
+                <label className={classes.label}>Email</label>
             </div>
             <div>
-                <input 
-                type="string" 
-                onChange={phoneValidator} 
-                name="phone" 
-                placeholder="Phone" 
-                ref={phoneRef} 
-                className={classes.form__input}/>
+                <input
+                    type="string"
+                    onChange={phoneValidator}
+                    name="phone"
+                    placeholder="Phone"
+                    ref={phoneRef}
+                    className={classes.form__input} />
                 <p>+38 (XXX) XXX - XX - XX</p>
                 {!phoneIsValid && <p>Phone is not valid</p>}
             </div>
