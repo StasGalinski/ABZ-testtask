@@ -1,0 +1,6 @@
+.errorMsg {
+    display: none;
+}
+.errorMsg[error=true]{
+    display: block;
+}

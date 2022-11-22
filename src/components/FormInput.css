@@ -1,0 +1,14 @@
+span {
+    margin-bottom: 10px;
+    color: red;
+    font-size: 12px;
+    display: none;
+}
+.form_input {
+    display: flex;
+    flex-direction: column;
+}
+
+.form_input input[wasfocused="true"]:invalid ~ span {
+    display: inline;
+}
