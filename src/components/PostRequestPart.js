@@ -1,6 +1,7 @@
 import Radiogroup from "./Radiogroup";
 import FormInput from "./FormInput";
-import {useState } from "react";
+import FileInput from "./FileInput";
+import { useState } from "react";
 import classes from './PostRequestPart.module.css';
 // const emailRegex = //[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g/
 // const phoneRegex = /[\+]{0,1}380([0-9]{8})/;
@@ -14,6 +15,7 @@ const PostRequestPart = (props) => {
         position_id: "",
         photo: ""
     })
+
     const inputs = [
         {
             id: 1,
@@ -53,32 +55,23 @@ const PostRequestPart = (props) => {
             label: "",
             type: "file",
             required: true,
-            accept:"image/jpg, image/jpeg",
-            errorMessage: "must be jpg or jpg"
+            accept: "image/jpg, image/jpeg",
+            errorMessage: "must be jpg or jpg",
         },
     ]
-    console.log(inputValues);
-    const submitForm = (e)=>{
+    const submitForm = (e) => {
         e.preventDefault();
+        console.log(inputValues)
+        if (!props.token) {
+
+        } else {
+            const formData = new FormData();
+            for(let key in inputValues){
+                formData.append(key,inputValues[key])
+            }
+            console.log([...formData])
+        }
     }
-    // const nameRef = useRef();
-    // const [nameIsValid, setNameIsValid] = useState('true');
-
-    // const phoneRef = useRef();
-    // const [phoneIsValid, setPhoneIsValid] = useState('true');
-
-    // const emailRef = useRef();
-    // const [emailIsValid, setEmailIsValid] = useState('true');
-
-    // const [selectedFile, setSelectedFile] = useState();
-    // const [fileIsValid, setFileIsValid] = useState('true');
-
-    // const [position, setPostion] = useState(undefined);
-    // const [positionIsValid, setPositionIsValid] = useState(false)
-
-    // const [formWasTouched, setFormWasTouched] = useState(false);
-    // const [formIsSent, setFormIsSent] = useState(false);
-
     // const submitForm = (event) => {
     //     event.preventDefault();
     //     console.log(props.token)
@@ -193,10 +186,11 @@ const PostRequestPart = (props) => {
         <div id="post__request__part" className={classes.container}>
             <h1>Working with POST request</h1>
             <div>
-                <form onSubmit={submitForm}>
-                {inputs.map(input=>(<FormInput  key={input.id}{...input} onChange={setInputValues}/>))}
-                <Radiogroup setRadio={setInputValues}/>
-                <button className="button" disabled={!props.token}>Send</button>
+                <form onSubmit={submitForm} autoComplete="off" className={classes.form}>
+                    {inputs.map(input => (<FormInput key={input.id}{...input} onChange={setInputValues} />))}
+                    <Radiogroup setRadio={setInputValues} />
+                    <FileInput />
+                    <button className={`button ${classes.btn}`} disabled={!props.token}>Send</button>
                 </form>
             </div>
         </div>

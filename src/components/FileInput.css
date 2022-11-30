@@ -1,0 +1,15 @@
+.fileinput{
+    color: red;
+    height: 54px;
+    border: 1px solid red;
+    box-sizing: border-box;
+    display: flex;
+}
+.fileinput label {
+    border:1px solid red;
+    box-sizing: border-box;
+    
+}
+.fileinput input{
+    display: none;
+}

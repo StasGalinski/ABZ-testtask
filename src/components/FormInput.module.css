@@ -1,0 +1,80 @@
+span {
+    margin-bottom: 10px;
+    color: red;
+    font-size: 12px;
+    display: none;
+}
+.form_input {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.form_input[name="photo"]{
+    order: 1;
+}
+.form_input label{
+    position: absolute;
+    color: #7e7e7e;
+    line-height: 26px;
+    font-size: 16px;
+    padding: 14px 16px;
+    pointer-events: none;
+    
+}
+.form_input input{
+    height: 54px;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    border-radius: 4px;
+    line-height: 26px;
+    font-size: 16px;
+    padding: 14px 16px;
+    border: 1px solid #d0cfcf;
+}
+.form_input input:not([type="file"]){
+    padding: 0;
+
+}
+.form_input input[type="file"]{
+    height: 54px;
+    padding: 0;
+}
+.form_input input[type="file"]::-webkit-file-upload-button{
+    visibility: hidden;
+}
+.form_input input[type="file"]::before{
+    content: "Upload";
+    display: inline-block;
+    background-color: #f8f8f8;
+    border: 1px solid #d0cfcf;
+    height: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(0,0,0,0.87);
+    cursor: pointer;
+    user-select: none;
+    padding: 14px 15px;
+}
+.form_input input:focus ~ label,
+.form_input input[wasfocused="true"] ~ label
+{
+    top: -12px;
+    background-color: #f8f8f8;
+    font-size: 12px;
+    line-height: 14px;
+    padding: 4px 2px;
+    left: 16px;
+}
+.form_input input[wasfocused="true"]:invalid ~ span {
+    display: inline;
+    position: absolute;
+    top: 55px;
+}
+.form_input input[wasfocused="true"]:invalid ~ label {
+    color: red;
+}
+.form_input input[wasfocused="true"]:invalid,
+.form_input input[wasfocused="true"]:invalid {
+    border-color: red;
+}

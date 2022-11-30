@@ -1,8 +1,8 @@
-import './FormInput.css'
+import classes from'./FormInput.module.css'
 import { useState } from 'react';
 const FormInput = (props)=>{
     const [focused,setFocused] = useState(false);
-    const {errorMessage,label,id,onChange,...others} = props;
+    const {errorMessage,label,id,onChange,placeholder,button,...others} = props;
     const inputChangeHandler = (e)=>{
         onChange(prev=>({...prev,[e.target.name]:e.target.value}))
     }
@@ -10,9 +10,9 @@ const FormInput = (props)=>{
         setFocused(true)
     }
     return (
-        <div className="form_input">
-            <label> {label}</label>
-            <input wasfocused={focused.toString()} onBlur={focusChange} {...others} onChange={inputChangeHandler}/>
+        <div className={classes.form_input} name={others.name}>
+            <input className={classes.input}wasfocused={focused.toString()} onBlur={focusChange} {...others} onChange={inputChangeHandler}/>
+            <label className={classes.label}> {label}</label>
             <span>{errorMessage}</span>
         </div>
     )

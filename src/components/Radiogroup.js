@@ -36,7 +36,7 @@ const Radiogroup = (props) => {
             <div className="radiogroup">
                 {!isLoading && <ul>{content}</ul>}
                 {isLoading && <p>Loading</p>}
-                <div className='errorMsg'>Something went wrong</div>
+                <div className='errorMsg' >Something went wrong</div>
             </div>
         </div>
     )
