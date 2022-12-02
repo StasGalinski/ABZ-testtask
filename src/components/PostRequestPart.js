@@ -1,6 +1,6 @@
 import Radiogroup from "./Radiogroup";
 import FormInput from "./FormInput";
-import FileInput from "./FileInput";
+import PhotoInput from "./PhotoInput";
 import { useState } from "react";
 import classes from './PostRequestPart.module.css';
 // const emailRegex = //[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g/
@@ -15,7 +15,7 @@ const PostRequestPart = (props) => {
         position_id: "",
         photo: ""
     })
-
+console.log(inputValues)
     const inputs = [
         {
             id: 1,
@@ -48,16 +48,16 @@ const PostRequestPart = (props) => {
             required: true,
             errorMessage: "must be a valid  phone"
         },
-        {
-            id: 4,
-            name: "photo",
-            placeholder: "Upload your photo",
-            label: "",
-            type: "file",
-            required: true,
-            accept: "image/jpg, image/jpeg",
-            errorMessage: "must be jpg or jpg",
-        },
+        // {
+        //     id: 4,
+        //     name: "photo",
+        //     placeholder: "Upload your photo",
+        //     label: "",
+        //     type: "file",
+        //     required: true,
+        //     accept: "image/jpg, image/jpeg",
+        //     errorMessage: "must be jpg or jpg",
+        // },
     ]
     const submitForm = (e) => {
         e.preventDefault();
@@ -185,14 +185,13 @@ const PostRequestPart = (props) => {
     return (
         <div id="post__request__part" className={classes.container}>
             <h1>Working with POST request</h1>
-            <div>
                 <form onSubmit={submitForm} autoComplete="off" className={classes.form}>
                     {inputs.map(input => (<FormInput key={input.id}{...input} onChange={setInputValues} />))}
                     <Radiogroup setRadio={setInputValues} />
-                    <FileInput />
+                    <PhotoInput photo={inputValues.photo}setPhoto={setInputValues}/>
                     <button className={`button ${classes.btn}`} disabled={!props.token}>Send</button>
                 </form>
-            </div>
+
         </div>
     )
 }

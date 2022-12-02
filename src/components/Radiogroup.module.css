@@ -1,0 +1,50 @@
+.radiogroup {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  justify-content: center;
+}
+.radio_items{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+.radio_item {
+  display: flex;
+  gap: 12px;
+}
+.position_name {
+    font-size: 16px;
+    line-height: 26px;
+}
+.container {
+    display: flex;
+    align-items: center;
+}
+.container input {
+  appearance: none;
+  margin: 0;
+  font: inherit;
+  color: red;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #d0cfcf;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+}
+.container input:checked {
+  border-color: #00bdd3;
+}
+.container input::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms tranform ease-in-out;
+  box-shadow: inset 1em 1em #00bdd3;
+}
+.container input:checked::before {
+  transform: scale(1);
+}

@@ -33,6 +33,7 @@
 }
 .tooltip__text{
     position: absolute;
+    max-width: 300px;
     left: 80px;
     visibility: hidden;
     color: white;
@@ -41,6 +42,8 @@
     padding: 3px 16px;
     display: flex;
     align-items: center;
+    overflow-wrap: break-word;
+    word-break: break-all;
     justify-content: center;
     z-index: 2;
 }

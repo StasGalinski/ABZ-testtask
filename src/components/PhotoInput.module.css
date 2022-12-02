@@ -1,0 +1,47 @@
+.photo_input{
+    color: rgba(0,0,0,0.87);
+    height: 54px;
+    border: 1px solid #D0CFCF;
+    border-left: 0px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    line-height: 26px;
+    position: relative;
+    border-radius: 4px;
+}
+.add_photo_button {
+    border:1px solid rgba(0,0,0,0.87);
+    box-sizing: border-box;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 83px;
+    border-radius: 4px 0px 0px 4px;
+    
+}
+.photo_input input{
+    display: none;
+}
+.photo_input input:invalid ~ span{
+    display: inline-block;
+}
+.visible {
+    display: inline-block;
+    position: absolute;
+    top: 53px;
+    box-sizing: border-box;
+}
+.description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    flex: 1;
+    color: #7e7e7e
+}
+.photo_name {
+    color: black;
+}
