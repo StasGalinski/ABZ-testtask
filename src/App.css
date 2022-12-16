@@ -4,14 +4,17 @@
   --secondary-color: #00bdd3;
   --backround-color: #f8f8f8;
 }
+
 body {
   font-family: "Nunito", sans;
   background-color: var(--backround-color);
-  position: relative;
 }
-
+.app {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 100px;
+}
 header {
-  position: absolute;
   top: 0%;
   left: 0%;
   width: 100%;
@@ -23,7 +26,6 @@ main {
   flex-direction: column;
   padding: 0px;
   gap: 140px;
-  position: absolute;
   width: 100%;
   max-width: 1170px;
   top: 60px;
